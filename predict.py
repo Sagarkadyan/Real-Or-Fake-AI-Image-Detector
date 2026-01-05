@@ -135,7 +135,7 @@ try:
     if prediction > threshold:
         # Real/Human Prepared (class 1)
         confidence = prediction
-        result = "Real AI Image"
+        result = "Real Human Image"
         emoji = "📸"
         ai_confidence = 1 - prediction
     else:
