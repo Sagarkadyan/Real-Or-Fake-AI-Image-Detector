@@ -1,184 +1,58 @@
-# 🤖 Enhanced AI vs Human Image Detector
+# Real-Or-Fake AI Image Detector — Python Backend + Static Frontend
 
-An advanced deep learning model that accurately detects whether an image is **AI-generated** or **prepared by a human** using transfer learning with MobileNetV2 and enhanced feature extraction techniques.
+This repo now contains a Python (Flask) backend that serves a simple static frontend and a prediction endpoint.
 
-## 📋 Features
+What you get
+- Flask app (app.py) serves `public/` and exposes:
+  - GET /api/health
+  - POST /api/predict (multipart form-data, field name `image`)
+- A Python predictor stub at `model/predictor.py` that you should replace with your real model code.
+- Static frontend in `public/` (index.html, style.css, app.js) — same UI as before.
+- `requirements.txt` for installing dependencies.
 
-- ✅ Accurate binary classification (AI Generated vs Human Prepared)
-- ✅ Beautiful animated prediction output
-- ✅ Web-ready API for website integration
-- ✅ Comprehensive testing suite
-- ✅ Easy to train and use
+Quick start (development)
+1. Create and activate a virtual environment:
+   ```
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
-## 🚀 Quick Start
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
-### 1. Install Dependencies
+3. (Optional) If you use PyTorch or TensorFlow, install those as needed:
+   ```
+   pip install torch torchvision       # or follow torch install instructions for your platform
+   pip install tensorflow             # if using TF
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+4. Run the server:
+   ```
+   python app.py
+   ```
+   The app will be available at http://localhost:5000
 
-### 2. Prepare Dataset
+API
+- POST /api/predict
+  - Form field: `image` (file)
+  - Response: JSON, example: `{"label":"real", "confidence":0.9234}`
 
-```bash
-python prepare_dataset.py
-```
+Integrating your real model
+- Edit `model/predictor.py`:
+  - Load your model once at module import (so it's not reloaded per request).
+  - Add a function to preprocess images (Pillow -> tensor / array).
+  - Run the model and return a JSON-serializable dict: at minimum `label` and `confidence`.
+- See comments in `model/predictor.py` for a PyTorch example snippet.
 
-This will download the dataset from Kaggle and organize it into `dataset/real/` and `dataset/fake/` folders.
+Deployment notes
+- For production, run with a WSGI server (gunicorn/uvicorn) and consider:
+  - Limiting upload sizes (Flask config: MAX_CONTENT_LENGTH).
+  - Adding authentication / rate-limiting.
+  - Running heavy model inference on GPU-backed machines or a separate microservice.
+  - Using cloud storage for uploads, or streaming input into the model without saving to disk.
 
-### 3. Train the Model
-
-```bash
-python train.py
-```
-
-The model will be saved as `real_vs_ai_model.h5` after training.
-
-### 4. Test the Model
-
-```bash
-python test.py
-```
-
-This will test the model on sample images and show accuracy metrics.
-
-### 5. Predict on an Image
-
-```bash
-python predict.py path/to/your/image.jpg
-```
-
-## 📁 Project Structure
-
-```
-.
-├── dataset/              # Training dataset (real/ and fake/ folders)
-├── train.py             # Model training script
-├── predict.py           # Command-line prediction with animations
-├── test.py              # Model testing and evaluation
-├── web_predict.py       # Web-ready prediction function
-├── flask_example.py     # Example Flask web application
-├── prepare_dataset.py   # Dataset preparation script
-├── images_check.py      # Dataset verification utility
-├── requirements.txt     # Python dependencies
-└── README.md           # This file
-```
-
-## 🎯 Usage Examples
-
-### Command Line Prediction
-
-```bash
-python predict.py test.jpg
-```
-
-**Output:**
-
-```
-🧠 Loading AI model...
-✅ Model loaded successfully!
-👀 Receiving image...
-🔍 Analyzing lighting and shadows...
-🧬 Examining facial and texture patterns...
-🖼️ Inspecting background consistency...
-🔎 Detecting color gradients and artifacts...
-🤔 Processing deep learning analysis...
-
-==================================================
-🤖 FINAL RESULT: AI Generated Image
-📊 Confidence: 87.45%
-==================================================
-
-🎉 Analysis complete!
-```
-
-### Web Integration
-
-#### Using Flask
-
-```python
-from flask import Flask, request, jsonify
-from web_predict import predict_image
-
-app = Flask(__name__)
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    file = request.files['image']
-    result = predict_image(file, return_confidence=True)
-    return jsonify(result)
-```
-
-#### Using the Web Function Directly
-
-```python
-from web_predict import predict_image
-
-# Predict from file path
-result = predict_image("path/to/image.jpg")
-print(result)
-# Output: {'result': 'AI Generated Image', 'is_ai': True, 'confidence': 0.8745}
-
-# Predict from file object
-with open("image.jpg", "rb") as f:
-    result = predict_image(f)
-```
-
-### Run Flask Web App
-
-```bash
-python flask_example.py
-```
-
-Then visit `http://localhost:5000` in your browser to use the web interface.
-
-## 🔧 Model Details
-
-- **Architecture**: MobileNetV2 (Transfer Learning)
-- **Input Size**: 224×224×3
-- **Output**: Binary classification (AI Generated / Human Prepared)
-- **Training**: 20 epochs with early stopping
-- **Data Augmentation**: Rotation, zoom, shifts, flips, brightness
-
-## 📊 Output Format
-
-The model outputs one of two results:
-
-1. **"AI Generated Image"** - The image appears to be generated by AI
-2. **"Prepared by human"** - The image appears to be taken/prepared by a human
-
-Each prediction includes a confidence score (0-100%).
-
-## 🛠️ Requirements
-
-- Python 3.7+
-- TensorFlow 2.10+
-- NumPy
-- Pillow
-- scikit-learn (for testing)
-- kagglehub (for dataset download)
-
-## 📝 Notes
-
-- The model uses transfer learning with MobileNetV2 pre-trained on ImageNet
-- Training data is split 80/20 for training/validation
-- Early stopping prevents overfitting
-- Model checkpoints save the best model based on validation accuracy
-
-## 🐛 Troubleshooting
-
-**Model not found error:**
-
-- Make sure you've trained the model first: `python train.py`
-
-**Dataset not found:**
-
-- Run `python prepare_dataset.py` to download and prepare the dataset
-
-**Import errors:**
-
-- Install all dependencies: `pip install -r requirements.txt`
-
-## 📄 License
-
-This project is open source and available for educational purposes.
+If you want, I can:
+- Replace the predictor stub with a concrete PyTorch inference implementation if you provide the model type (PyTorch/TF) and the model file (or its expected path).
+- Add a dockerfile and docker-compose to build an image that includes CPU PyTorch or TF.

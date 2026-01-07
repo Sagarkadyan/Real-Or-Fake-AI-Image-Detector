@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Real-or-Fake AI Image Detector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Real or Fake — AI Image Detector</h1>
+
+    <div class="uploader">
+      <div id="preview" class="preview">No image selected</div>
+      <input type="file" id="fileInput" accept="image/*" />
+      <button id="uploadBtn" disabled>Analyze Image</button>
+    </div>
+
+    <div id="result" class="result hidden">
+      <h2>Result</h2>
+      <p id="label"></p>
+      <p id="confidence"></p>
+    </div>
+
+    <div id="status" class="status"></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
