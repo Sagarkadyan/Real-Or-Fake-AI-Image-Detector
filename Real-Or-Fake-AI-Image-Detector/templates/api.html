@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}API Access - Veritas AI{% endblock %}
+
+{% block content %}
+<section class="page-header container">
+  <h1 class="section-title">API Access & Usage</h1>
+  <p class="subtitle">Manage your API keys and monitor your usage.</p>
+</section>
+
+<section class="container">
+  <div class="api-key-section">
+    <h2>Your API Key</h2>
+    <div class="api-key-card">
+      <input type="text" id="api-key-input" value="veritas_sk_live_xxxxxxxxxxxxxx_mock" readonly>
+      <button id="copy-key-btn" class="btn btn-secondary">Copy</button>
+    </div>
+    <div class="api-key-actions">
+        <button class="btn btn-secondary">Regenerate Key</button>
+    </div>
+  </div>
+
+  <div class="api-usage-section">
+    <h2>Monthly Usage</h2>
+    <div class="usage-card">
+        <div class="usage-stat">
+            <h4>API Calls</h4>
+            <p>1,234 / 10,000</p>
+            <div class="usage-bar">
+                <div class="usage-bar-fill" style="width: 12.34%;"></div>
+            </div>
+        </div>
+        <div class="usage-stat">
+            <h4>Next Reset</h4>
+            <p>January 31, 2026</p>
+        </div>
+        <div class="usage-stat">
+            <h4>Current Plan</h4>
+            <p>Pro Plan</p>
+            <a href="{{ url_for('pricing') }}" class="btn btn-primary">Upgrade Plan</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="api-docs-promo">
+      <h2>Need Help?</h2>
+      <p>Check out our comprehensive API documentation for detailed integration guides and examples.</p>
+      <a href="#" class="btn btn-secondary">Read API Docs</a>
+  </div>
+
+</section>
+{% endblock %}

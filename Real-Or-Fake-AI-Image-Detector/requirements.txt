@@ -1,0 +1,9 @@
+flask==2.3.3
+flask-cors==3.0.10
+pillow
+numpy
+tensorflow
+Flask-SQLAlchemy==3.1.1
+Flask-Login==0.6.3
+Flask-Bcrypt==1.0.1
+

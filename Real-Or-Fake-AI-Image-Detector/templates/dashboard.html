@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Veritas AI{% endblock %}
+
+{% block content %}
+<section class="page-header container">
+  <h1 class="section-title">Dashboard</h1>
+  <p class="subtitle">Welcome back, {{ current_user.username }}. Here is your recent analysis history.</p>
+</section>
+
+<section class="container">
+  <div class="dashboard-content">
+    <div class="history-table">
+      <div class="history-header">
+        <div class="col-img">Image</div>
+        <div class="col-result">Result</div>
+        <div class="col-confidence">Confidence</div>
+        <div class="col-date">Date</div>
+        <div class="col-action">Action</div>
+      </div>
+      
+      <!-- Mockup Row 1: AI -->
+      <div class="history-row">
+        <div class="col-img">
+          <img src="https://images.unsplash.com/photo-1677442135743-c42c443524c6?q=80&w=400" alt="thumbnail">
+        </div>
+        <div class="col-result"><span class="label-ai">AI-Generated</span></div>
+        <div class="col-confidence">98.7%</div>
+        <div class="col-date">2026-01-10</div>
+        <div class="col-action"><a href="#" class="btn-view-report">View Report</a></div>
+      </div>
+      
+      <!-- Mockup Row 2: Real -->
+      <div class="history-row">
+        <div class="col-img">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400" alt="thumbnail">
+        </div>
+        <div class="col-result"><span class="label-real">Human-Made</span></div>
+        <div class="col-confidence">92.1%</div>
+        <div class="col-date">2026-01-09</div>
+        <div class="col-action"><a href="#" class="btn-view-report">View Report</a></div>
+      </div>
+
+      <!-- Mockup Row 3: AI -->
+      <div class="history-row">
+        <div class="col-img">
+            <img src="https://images.unsplash.com/photo-1674027446529-914a4b05509b?q=80&w=400" alt="thumbnail">
+        </div>
+        <div class="col-result"><span class="label-ai">AI-Generated</span></div>
+        <div class="col-confidence">84.5%</div>
+        <div class="col-date">2026-01-08</div>
+        <div class="col-action"><a href="#" class="btn-view-report">View Report</a></div>
+      </div>
+
+       <!-- Mockup Row 4: Real -->
+      <div class="history-row">
+        <div class="col-img">
+            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=400" alt="thumbnail">
+        </div>
+        <div class="col-result"><span class="label-real">Human-Made</span></div>
+        <div class="col-confidence">99.2%</div>
+        <div class="col-date">2026-01-07</div>
+        <div class="col-action"><a href="#" class="btn-view-report">View Report</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

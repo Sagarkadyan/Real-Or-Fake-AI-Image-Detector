@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Pricing - Veritas AI{% endblock %}
+
+{% block content %}
+<section class="page-header container">
+  <h1 class="section-title">Find the Right Plan for You</h1>
+  <p class="subtitle">Simple, transparent pricing that scales with your needs.</p>
+</section>
+
+<section class="container">
+  <div class="pricing-grid">
+    
+    <!-- Free Plan -->
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Free</h3>
+        <p class="price"><span>$0</span>/month</p>
+        <p class="pricing-subtitle">For individuals and hobbyists</p>
+      </div>
+      <div class="pricing-body">
+        <ul class="feature-list">
+          <li><span class="check-icon">✓</span> 50 analyses per month</li>
+          <li><span class="check-icon">✓</span> Standard analysis speed</li>
+          <li><span class="check-icon">✓</span> Community support</li>
+        </ul>
+      </div>
+      <div class="pricing-footer">
+        <a href="{{ url_for('signup') }}" class="btn btn-secondary">Get Started</a>
+      </div>
+    </div>
+
+    <!-- Pro Plan -->
+    <div class="pricing-card featured">
+      <div class="pricing-header">
+        <span class="featured-badge">Most Popular</span>
+        <h3>Pro</h3>
+        <p class="price"><span>$49</span>/month</p>
+        <p class="pricing-subtitle">For professionals and small teams</p>
+      </div>
+      <div class="pricing-body">
+        <ul class="feature-list">
+          <li><span class="check-icon">✓</span> 5,000 analyses per month</li>
+          <li><span class="check-icon">✓</span> Priority analysis speed</li>
+          <li><span class="check-icon">✓</span> Access to API</li>
+          <li><span class="check-icon">✓</span> Email support</li>
+        </ul>
+      </div>
+      <div class="pricing-footer">
+        <a href="{{ url_for('signup') }}" class="btn btn-primary">Choose Pro</a>
+      </div>
+    </div>
+
+    <!-- Enterprise Plan -->
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Enterprise</h3>
+        <p class="price"><span>Custom</span></p>
+        <p class="pricing-subtitle">For large-scale platforms</p>
+      </div>
+      <div class="pricing-body">
+        <ul class="feature-list">
+          <li><span class="check-icon">✓</span> Unlimited analyses</li>
+          <li><span class="check-icon">✓</span> Dedicated infrastructure</li>
+          <li><span class="check-icon">✓</span> Volume discounts</li>
+          <li><span class="check-icon">✓</span> 24/7 premium support</li>
+        </ul>
+      </div>
+      <div class="pricing-footer">
+        <a href="#" class="btn btn-secondary">Contact Sales</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

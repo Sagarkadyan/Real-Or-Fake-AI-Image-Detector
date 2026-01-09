@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Veritas AI - AI Detection for Digital Trust{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="animated-headline">
+        <span>AI Image Detection</span>
+        <span class="highlight">for Trust & Safety.</span>
+      </h1>
+      <p class="subtitle">In a world of synthetic media, Veritas AI provides the ground truth. Empower your platform with the most advanced AI-generated image detection technology.</p>
+      <div class="hero-cta">
+        <a href="{{ url_for('analyzer') }}" class="btn btn-primary btn-lg">Analyze Image Now</a>
+        <a href="{{ url_for('api_docs') }}" class="btn btn-secondary btn-lg">Get API Access</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <h2 class="section-title">Built for Professionals</h2>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <h3>For Journalists</h3>
+        <p>Verify the authenticity of images before you publish. Protect your reputation and combat misinformation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>For Businesses</h3>
+        <p>Secure your brand against AI-generated fakes, deepfake scams, and synthetic identity fraud.</p>
+      </div>
+      <div class="feature-card">
+        <h3>For Platforms</h3>
+        <p>Integrate our powerful API to automatically scan user-generated content and maintain a safe community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
